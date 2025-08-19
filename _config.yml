@@ -1,9 +1,9 @@
 title: Thinkers CSA Repository
 description: "We are the thinkers!"
-owner_name: Thinkers
+owner_name: Yash Parikh
 github_username: illuminati1618 
 github_repo: "pages-thinkers-yash" 
-baseurl: "" 
+baseurl: "/pages-thinkers-yash/" 
 future: true
 remote_theme: jekyll/minima
 minima:
