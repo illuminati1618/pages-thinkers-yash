@@ -2,6 +2,7 @@
 layout: base
 title: Lesson Plan--> Can you play rock, paper, scissors shoot with us?
 permalink: /gamify/rock_paper_scissors_shoot
+css: "/assets/css/rps.css"
 ---
 ## Rock Paper Scissors Console Learning
 
