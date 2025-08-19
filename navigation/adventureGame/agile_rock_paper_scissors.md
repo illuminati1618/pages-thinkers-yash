@@ -2,8 +2,8 @@
 layout: base
 title: Lesson Plan--> Can you play rock, paper, scissors shoot with us?
 permalink: /gamify/rock_paper_scissors_shoot
-css: "/assets/css/rps.css"
 ---
+
 ## Rock Paper Scissors Console Learning
 
 *A hands-on introduction to browser developer tools through interactive gameplay*
@@ -245,3 +245,72 @@ window.playRPS = function(playerChoice) {
 - Demonstrates understanding of when console interaction is preferable to GUI testing
 
 This foundation prepares students for more advanced web development concepts while building confidence through playful, hands-on interaction with professional developer tools.
+
+## Success Indicators
+- Can open developer tools and navigate to console
+- Successfully executes `playRPS()` function with valid parameters
+- Understands relationship between function calls and console output
+- Explains how the game logic determines winners
+- Recognizes the role of `Math.random()` in computer choice selection  
+- Connects `console.log()` statements to visible output
+- Uses console confidently for testing and experimentation
+- Applies console debugging skills to other programming contexts
+- Demonstrates understanding of when console interaction is preferable to GUI testing
+
+This foundation prepares students for more advanced web development concepts while building confidence through playful, hands-on interaction with professional developer tools.
+
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Console Game</title>
+  <!-- Link to your CSS -->
+  <link rel="stylesheet" href="assets/css/rockpaper.css">
+</head>
+<body>
+
+  <main>
+    <h1>Rock Paper Scissors Console Game</h1>
+    <p>Click a button or open your browser console to play!</p>
+
+    <div class="game-buttons">
+      <button onclick="playRPS('rock')">Rock</button>
+      <button onclick="playRPS('paper')">Paper</button>
+      <button onclick="playRPS('scissors')">Scissors</button>
+    </div>
+
+    <p>Open the browser console (F12 or Ctrl+Shift+I / Cmd+Option+I) to see the results.</p>
+  </main>
+
+  <script>
+    window.playRPS = function(playerChoice) {
+      // Array of possible choices
+      const choices = ["rock", "paper", "scissors"];
+      
+      // Computer makes random selection
+      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      // Game logic determines winner
+      let resultText;
+      if (playerChoice === computerChoice) {
+          resultText = "Tie!";
+      } else if (
+          (playerChoice === "rock" && computerChoice === "scissors") ||
+          (playerChoice === "paper" && computerChoice === "rock") ||
+          (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+          resultText = "You Win!";
+      } else {
+          resultText = "You Lose!";
+      }
+
+      // Output results to console
+      console.log(`You chose: ${playerChoice.toUpperCase()}`);
+      console.log(`Computer chose: ${computerChoice.toUpperCase()}`);
+      console.log(`Result: ${resultText}`);
+    };
+  </script>
+
+</body>
+</html>
