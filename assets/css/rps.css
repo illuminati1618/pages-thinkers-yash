@@ -1,0 +1,232 @@
+
+/*
+  Rock Paper Scissors Console Learning — page styles
+  Drop this into /assets/css/rps.css and reference it in your layout, e.g.
+  <link rel="stylesheet" href="/assets/css/rps.css">
+*/
+
+:root{
+  --bg: #0b0c10;            /* deep slate */
+  --panel: #111319;         /* card background */
+  --muted: #8b90a3;         /* secondary text */
+  --text: #e8ebff;          /* primary text */
+  --brand: #7aa2ff;         /* link + accent */
+  --brand-2: #a7f3d0;       /* mint accent */
+  --warn: #ffd166;
+  --danger: #ff6b6b;
+  --ok: #6ee7b7;
+  --ring: rgba(122,162,255,.35);
+  --code-bg: #0a0c12;
+  --code-border: #1a1f2b;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --maxw: 900px;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light){
+  :root{
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --muted: #5a6072;
+    --text: #0d1222;
+    --brand: #155eef;
+    --brand-2: #0ea5e9;
+    --code-bg: #0f172a;
+    --code-border: #0b1220;
+    --ring: rgba(21,94,239,.25);
+  }
+}
+
+/* Base layout */
+html,body{
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(122,162,255,.08), transparent 60%),
+              radial-gradient(1000px 700px at 120% 20%, rgba(14,165,233,.08), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main, .page, .container{
+  width: min(100% - 3rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* Headings */
+.page h1, .page h2, .page h3, .page h4{
+  letter-spacing: .2px;
+}
+.page h1{ font-size: clamp(2rem, 2vw + 1.5rem, 2.6rem); margin-top: 1.6rem; }
+.page h2{ font-size: clamp(1.35rem, 1.2vw + 1.1rem, 1.8rem); margin-top: 2.2rem; }
+.page h3{ font-size: clamp(1.1rem, .8vw + 1rem, 1.35rem); margin-top: 1.6rem; }
+
+/* Title ribbon */
+.page h1 + p em{
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(122,162,255,.18), rgba(14,165,233,.18));
+  border: 1px solid rgba(122,162,255,.28);
+  color: var(--text);
+  padding: .55rem .8rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+/* Horizontal divider */
+.page hr, .page > section + section::before, .page > * + hr{
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(122,162,255,.35), transparent);
+  border: none;
+  margin: 2rem 0 1.5rem;
+}
+
+/* Lists */
+.page ul, .page ol{ padding-left: 1.2rem; }
+.page li{ margin: .35rem 0; }
+.page ul li::marker{ color: var(--brand); }
+.page ol li::marker{ color: var(--brand-2); font-weight: 700; }
+
+/* Tip cards / callouts */
+.callout{
+  background: linear-gradient(180deg, rgba(122,162,255,.10), rgba(122,162,255,.05));
+  border: 1px solid rgba(122,162,255,.28);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+.callout--warn{ border-color: rgba(255,209,102,.45); background: linear-gradient(180deg, rgba(255,209,102,.12), rgba(255,209,102,.06)); }
+.callout--ok{ border-color: rgba(110,231,183,.45); background: linear-gradient(180deg, rgba(110,231,183,.12), rgba(110,231,183,.06)); }
+
+/* Code blocks */
+pre, code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+pre{
+  background: linear-gradient(180deg, rgba(14,165,233,.08), rgba(122,162,255,.08)), var(--code-bg);
+  color: #e6edf3;
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  overflow: auto;
+  box-shadow: var(--shadow);
+}
+
+code{
+  background: rgba(122,162,255,.15);
+  border: 1px solid rgba(122,162,255,.28);
+  padding: .15rem .4rem;
+  border-radius: .5rem;
+}
+
+/* "Console" styled block (use ``` blocks that begin with lines starting with "> ") */
+pre.console{
+  background: #0a0b0f;
+  border-color: #1a2439;
+}
+pre.console code{ background: transparent; border: none; padding: 0; }
+
+/* Inline badges */
+.badge{
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .25rem .6rem; border-radius: 999px; font-size: .85rem; font-weight: 600;
+  background: rgba(167,243,208,.15); color: var(--brand-2); border: 1px solid rgba(167,243,208,.35);
+}
+.badge--warn{ background: rgba(255,209,102,.15); color: var(--warn); border-color: rgba(255,209,102,.35); }
+.badge--danger{ background: rgba(255,107,107,.12); color: var(--danger); border-color: rgba(255,107,107,.35); }
+
+/* Step grid */
+.steps{
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;
+}
+.step{
+  background: var(--panel);
+  border: 1px solid rgba(122,162,255,.25);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.step__num{
+  width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+  background: linear-gradient(180deg, rgba(122,162,255,.25), rgba(14,165,233,.25)); color: var(--text);
+  border: 1px solid rgba(122,162,255,.45);
+  font-weight: 700; margin-bottom: .5rem;
+}
+
+/* Link + focus styles */
+a{ color: var(--brand); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+:focus-visible{
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: .5rem;
+}
+
+/* Buttons (use class="btn") */
+.btn{
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: linear-gradient(180deg, rgba(122,162,255,.25), rgba(14,165,233,.25));
+  border: 1px solid rgba(122,162,255,.45);
+  color: var(--text);
+  padding: .6rem .9rem; border-radius: 999px; font-weight: 600; text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform .08s ease, filter .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); filter: brightness(1.05); text-decoration: none; }
+
+/* Admonitions using blockquote */
+.page blockquote{
+  margin: 1rem 0; padding: 1rem 1.2rem;
+  background: linear-gradient(180deg, rgba(14,165,233,.10), rgba(122,162,255,.06));
+  border-left: 4px solid var(--brand);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.page blockquote p{ margin: 0; color: var(--text); }
+
+/* Tables (if you add rubrics) */
+.page table{
+  border-collapse: separate; border-spacing: 0; width: 100%;
+  background: var(--panel); border: 1px solid rgba(122,162,255,.25); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.page th, .page td{ padding: .75rem .9rem; text-align: left; }
+.page thead th{ background: linear-gradient(180deg, rgba(122,162,255,.12), rgba(14,165,233,.12)); }
+.page tbody tr + tr td{ border-top: 1px solid rgba(122,162,255,.15); }
+
+/* "Success Indicators" checklist */
+.checklist{ list-style: none; padding-left: 0; }
+.checklist li{ position: relative; padding-left: 1.8rem; margin: .5rem 0; }
+.checklist li::before{
+  content: "✔"; position: absolute; left: 0; top: 0; line-height: 1.4; width: 1.2rem; height: 1.2rem;
+  display: inline-grid; place-items: center; border-radius: 6px;
+  background: rgba(110,231,183,.18); color: var(--ok); border: 1px solid rgba(110,231,183,.35);
+}
+
+/* Permalink banner (optional) */
+.permalink-tag{
+  display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; color: var(--muted);
+}
+.permalink-tag svg{ opacity: .8; }
+
+/* Small helpers */
+.muted{ color: var(--muted); }
+.lead{ font-size: 1.05rem; color: var(--muted); }
+.center{ text-align: center; }
+
+/* Responsive spacing for prose inside Markdown */
+.page > *{ margin-block: 1rem; }
+.page > h1, .page > h2, .page > h3{ margin-block: 1.2rem .6rem; }
+
+/* Print-friendly tweaks */
+@media print{
+  :root{ --bg: #fff; --text: #000; }
+  body{ background: #fff; color: #000; }
+  a{ color: #0043ce; }
+  pre{ box-shadow: none; }
+}
