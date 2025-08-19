@@ -1,9 +1,9 @@
 ---
 layout: base
-title: Rock Paper Scissors
+title: Rock Paper Scissors SHOOT!
 permalink: /gamify/rock-paper-scissor
 ---
-
+ 
 <div id="gameContainer">
     <canvas id='gameCanvas'></canvas>
 </div>
@@ -29,13 +29,13 @@ permalink: /gamify/rock-paper-scissor
     `;
 
     const instructionsHTML = `
-        <h2 style="color: purple; margin-bottom: 20px;">Rock Paper Scissors</h2>
+        <h2 style="color: purple; margin-bottom: 20px;">Rock Paper Scissors SHOOT!</h2>
         <div style="margin-bottom: 20px;">
             <p>Play the game from your browser console!</p>
             <p>Type <code>playRPS("rock")</code>, <code>playRPS("paper")</code>, or <code>playRPS("scissors")</code></p>
         </div>
         <div id="images" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
-            <img src=path + "/images/gamify/rock.jpg" 
+            <img src="{{site.baseurl}}/images/gamify/rock.jpeg" 
                  style="width:100px; border:2px solid white; border-radius:10px;">
             <img src="{{site.baseurl}}/images/gamify/paper.jpeg" 
                  style="width:100px; border:2px solid white; border-radius:10px;">
@@ -44,7 +44,6 @@ permalink: /gamify/rock-paper-scissor
         </div>
         <div id="resultBox" style="margin-top: 25px; font-size: 16px; color: yellow;"></div>
     `;
-
     const container = document.createElement("div");
     container.setAttribute("style", instructionsStyle);
     container.innerHTML = instructionsHTML;
