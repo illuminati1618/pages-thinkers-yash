@@ -3,7 +3,7 @@ description: "We are the thinkers!"
 owner_name: Yash Parikh
 github_username: illuminati1618 
 github_repo: "pages-thinkers-yash" 
-baseurl: "/pages-thinkers-yash/" 
+baseurl: "/pages-thinkers-yash" 
 future: true
 remote_theme: jekyll/minima
 minima:
