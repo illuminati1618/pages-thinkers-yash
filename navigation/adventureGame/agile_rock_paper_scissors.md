@@ -249,9 +249,9 @@ permalink: /gamify/rock_paper_scissors_shoot
             <li>
                 <strong>Execute Game Commands</strong>
                 <ul>
-                    <li>Type exactly: playRPS("rock") and press Enter</li>
-                    <li>Try other choices: <code>playRPS("paper") or playRPS("scissors") </li>
-                    <li>Watch the console display your results in real-time</li>
+                  <li>Type exactly: playRPS(&quot;rock&quot;) and press Enter</li>
+                  <li>Try other choices: playRPS(&quot;paper&quot;) or playRPS(&quot;scissors&quot;)</li>
+                  <li>Watch the console display your results in real-time</li>
                 </ul>
             </li>
         </ol>
