@@ -248,6 +248,15 @@ hide: true
 
 </script>
 
+**Group Member Name** | **Trio** | **Link to Repository**
+-- | -- | --
+Yash Parikh | A | [Repo](https://github.com/illuminati1618/pages-thinkers-yash/)
+Mihir Bapat | A | [Repo](https://github.com/hypernova101/pages-thinkers-mihir/)
+Ansh Kumar | A | [Repo](https://github.com/magic005/pages-thinkers-ansh/)
+Nithika Vivek | B | [Repo](https://github.com/nithikavivek/pages-thinkers-nithika/)
+Saanvi Dogra | B | [Repo](https://github.com/saanvid270/pages-thinkers-saanvi/)
+Eshika Pallapotu | B | [Repo](https://github.com/eshikap1/pages-thinkers-eshika/)
+
 ## About
 
 Empower yourself to solve real-world problems, unlock creativity, and open doors to every field—because coding is the language of innovation.
