@@ -79,6 +79,16 @@ lxdData:
       Lessons: "/pages-thinkers-yash/games/tictactoe/lesson"
       Image: "/pages-thinkers-yash/images/tictactoe/tictactoe.png"
       Alt: "Tic Tac Toe"
+    - Title: "Solitaire"
+      Genre: "Coding"
+      Level: "2"
+      Description: "Learn more about JS and OOP as you customize the popular card game solitaire."
+      Categories: ["JavaScript", "OOP", "Game Coding", "Cards", "Innovation"]
+      Game: "/solitaire"
+      Lessons: "/solitaire/lesson"
+      Image: "/images/solitaire.png"
+      Alt: "Solitaire Image"
+    
 ---
 
 {%- include tailwind/lxd.html -%}
