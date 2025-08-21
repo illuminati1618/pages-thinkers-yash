@@ -35,12 +35,18 @@ permalink: /gamify/rock-paper-scissor
             <p>Type <code>playRPS("rock")</code>, <code>playRPS("paper")</code>, or <code>playRPS("scissors")</code></p>
         </div>
         <div id="images" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
-            <img src="{{site.baseurl}}/images/gamify/rock.jpg" 
-                 style="width:100px; border:2px solid white; border-radius:10px;">
-            <img src="{{site.baseurl}}/images/gamify/paper.jpeg" 
-                 style="width:100px; border:2px solid white; border-radius:10px;">
-            <img src="{{site.baseurl}}/images/gamify/scissors.jpeg" 
-                 style="width:100px; border:2px solid white; border-radius:10px;">
+            <button id="rock-btn" style="background:none; border:none; padding:0; cursor:pointer;">
+                <img id="rock-img" src="{{site.baseurl}}/images/gamify/rock.jpg" 
+                     style="width:100px; border:2px solid white; border-radius:10px;">
+            </button>
+            <button id="paper-btn" style="background:none; border:none; padding:0; cursor:pointer;">
+                <img id="paper-img" src="{{site.baseurl}}/images/gamify/paper.jpeg" 
+                     style="width:100px; border:2px solid white; border-radius:10px;">
+            </button>
+            <button id="scissors-btn" style="background:none; border:none; padding:0; cursor:pointer;">
+                <img id="scissors-img" src="{{site.baseurl}}/images/gamify/scissors.jpeg" 
+                     style="width:100px; border:2px solid white; border-radius:10px;">
+            </button>
         </div>
         <div id="resultBox" style="margin-top: 25px; font-size: 16px; color: yellow;"></div>
     `;
@@ -49,6 +55,18 @@ permalink: /gamify/rock-paper-scissor
     container.innerHTML = instructionsHTML;
     document.body.appendChild(container);
 
+    // Helper to highlight an image
+    function highlightImage(id) {
+        // Remove highlight from all
+        ["rock-img", "paper-img", "scissors-img"].forEach(imgId => {
+            const img = document.getElementById(imgId);
+            if (img) img.style.boxShadow = "";
+        });
+        // Highlight selected
+        const el = document.getElementById(id);
+        if (el) el.style.boxShadow = "0 0 30px 10px gold";
+    }
+
     // Rock-Paper-Scissors game logic
     window.playRPS = function(playerChoice) {
         const choices = ["rock", "paper", "scissors"];
@@ -56,6 +74,11 @@ permalink: /gamify/rock-paper-scissor
             console.log("Invalid choice. Use 'rock', 'paper', or 'scissors'.");
             return;
         }
+
+        // Highlight the chosen element
+        if (playerChoice === "rock") highlightImage("rock-img");
+        if (playerChoice === "paper") highlightImage("paper-img");
+        if (playerChoice === "scissors") highlightImage("scissors-img");
 
         const computerChoice = choices[Math.floor(Math.random() * choices.length)];
         let resultText;
@@ -82,4 +105,21 @@ permalink: /gamify/rock-paper-scissor
             <h3 style="color: cyan;">${resultText}</h3>
         `;
     };
+
+    // Add click events to images-as-buttons for inspect instructions
+    document.getElementById("rock-btn").addEventListener("click", function() {
+        alert(
+            "🪨 Right-click this image and choose 'Inspect'!\n\nTry this in the console to change the border color:\n\ndocument.querySelector('#rock-img').style.border = '4px solid lime';"
+        );
+    });
+    document.getElementById("paper-btn").addEventListener("click", function() {
+        alert(
+            "📄 Right-click this image and choose 'Inspect'!\n\nTry this in the console to rotate the image:\n\ndocument.querySelector('#paper-img').style.transform = 'rotate(15deg)';"
+        );
+    });
+    document.getElementById("scissors-btn").addEventListener("click", function() {
+        alert(
+            "✂️ Right-click this image and choose 'Inspect'!\n\nTry this in the console to change the size:\n\ndocument.querySelector('#scissors-img').style.width = '150px';"
+        );
+    });
 </script>
