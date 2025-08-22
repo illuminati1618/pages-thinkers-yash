@@ -4,16 +4,17 @@ title: Rock Paper Scissors SHOOT!
 permalink: /gamify/rock-paper-scissor
 ---
 
-<div id="gameContainer">
-  <canvas id='gameCanvas' style="display:none"></canvas>
+<div id="mainGameBox" style="max-width:700px;margin:64px auto 48px auto;position:relative;z-index:2;">
+  <div id="gameContainer">
+    <canvas id='gameCanvas' style="display:none"></canvas>
+  </div>
 </div>
 
 <script type="module">
   // --- UI (purple box) ---
     const instructionsStyle = `
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+  position: relative;
+  margin: 64px auto 48px auto;
     background: linear-gradient(135deg, black, purple);
     color: white;
     padding: 30px;
@@ -58,7 +59,7 @@ permalink: /gamify/rock-paper-scissor
   const container = document.createElement("div");
   container.setAttribute("style", instructionsStyle);
   container.innerHTML = instructionsHTML;
-  document.body.appendChild(container);
+  document.getElementById("mainGameBox").appendChild(container);
 
   // --- helper: highlight chosen image ---
   function highlightImage(id){
