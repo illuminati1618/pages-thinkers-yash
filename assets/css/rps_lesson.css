@@ -1,0 +1,220 @@
+.glass, .tintedGlass {
+  backdrop-filter: blur(30px); }
+
+.tintedGlass {
+  background: rgba(50, 50, 50, 0.5); }
+
+.glow, .glowOnHover {
+  cursor: pointer;
+  position: relative;
+  z-index: 0; }
+  .glow:before, .glowOnHover:before, .glow:after, .glowOnHover:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    z-index: -1; }
+  .glow:before, .glowOnHover:before {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    top: -2px;
+    left: -2px;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    animation: glowing 20s linear infinite; }
+  .glow:hover:before, .glowOnHover:hover:before {
+    opacity: 1; }
+  .glow:after, .glowOnHover:after {
+    background: #1e1e1e; }
+
+.glowOnHover {
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #1e1e1e;
+  border-radius: 12px; }
+
+@keyframes glowing {
+  0%,
+    100% {
+    background-position: 0 0; }
+  50% {
+    background-position: 400% 0; } }
+/* Force light mode and prevent browser overrides */
+:root {
+  color-scheme: only dark !important; }
+
+body, body * {
+  color: #000000 !important; }
+
+/* Ensure high contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: #1f2937 !important; }
+
+p, li, span, div {
+  color: #374151 !important; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3a8a, #3730a3);
+  color: #1f2937;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+  min-height: 100vh; }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px;
+  border: 3px solid #ffd700;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+
+h1 {
+  color: #1f2937;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #ffd700;
+  padding-bottom: 10px;
+  font-weight: bold; }
+
+h2 {
+  color: #1f2937;
+  font-size: 1.8em;
+  border-left: 4px solid #c06c84;
+  padding-left: 15px;
+  margin-top: 30px;
+  font-weight: bold; }
+
+h3 {
+  color: #1f2937;
+  font-size: 1.4em;
+  margin-top: 25px;
+  font-weight: bold; }
+
+h4 {
+  color: #1f2937;
+  font-size: 1.2em;
+  margin-top: 20px;
+  font-weight: bold; }
+
+.subtitle {
+  text-align: center;
+  color: #4b5563;
+  font-style: italic;
+  font-size: 1.2em;
+  margin-bottom: 30px; }
+
+.game-buttons {
+  text-align: center;
+  margin: 30px 0; }
+
+button {
+  background: linear-gradient(45deg, #ffd700, #c06c84);
+  color: #1f2937;
+  border: none;
+  padding: 15px 30px;
+  margin: 0 10px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+
+button:hover {
+  background: linear-gradient(45deg, #c06c84, #6a4c93);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+
+button:active {
+  transform: translateY(-1px); }
+
+.console-example {
+  background: #1a1a1a;
+  color: #00ff41;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  margin: 20px 0;
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.95em; }
+
+.code-block {
+  background: #f8fafc;
+  color: #1f2937;
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  margin: 20px 0;
+  border: 2px solid #c06c84;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9em;
+  border-left: 4px solid #6a4c93; }
+
+.section-highlight {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(192, 108, 132, 0.1));
+  padding: 25px;
+  margin: 25px 0;
+  border: 1px solid #c06c84;
+  border-radius: 8px; }
+
+.phase-section {
+  background: rgba(106, 76, 147, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 4px solid #6a4c93;
+  border-radius: 5px; }
+
+ul, ol {
+  margin: 15px 0;
+  padding-left: 30px; }
+
+li {
+  margin: 8px 0;
+  color: #374151; }
+
+p {
+  color: #374151;
+  margin: 15px 0; }
+
+strong {
+  color: #1f2937;
+  font-weight: bold; }
+
+.success-indicators {
+  background: rgba(255, 215, 0, 0.15);
+  padding: 25px;
+  margin: 30px 0;
+  border: 2px solid #ffd700;
+  border-radius: 8px; }
+
+.activities-section {
+  background: rgba(192, 108, 132, 0.1);
+  padding: 25px;
+  margin: 25px 0;
+  border: 1px solid #c06c84;
+  border-radius: 8px; }
+
+.play-instructions {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1f2937;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+  border: 2px solid #d97706; }
+
+/*# sourceMappingURL=rps_lesson.css.map */

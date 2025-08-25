@@ -56,12 +56,12 @@ all: serve
 
 
 # Start the local web server
-server: stop convert
+server:
 	@echo "Starting server..."
-	@@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) > $(LOG_FILE) 2>&1 & \
-		PID=$$!; \
-		echo "Server PID: $$PID"
-	@@until [ -f $(LOG_FILE) ]; do sleep 1; done
+	@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) --livereload > $(LOG_FILE) 2>&1 & \
+        PID=$$!; \
+        echo "Server PID: $$PID"
+	@until [ -f $(LOG_FILE) ]; do sleep 1; done
 
 # Convert .ipynb files to Markdown with front matter
 convert: $(MARKDOWN_FILES)
@@ -112,56 +112,54 @@ refresh:
 # ================================================================
 
 # Serve with Minima theme
-serve-minima: stop convert
+serve-minima:
 	@echo "Starting server with Minima theme..."
 	@if ! grep -q "jekyll/minima" _config.yml; then \
-		./scripts/switch-theme.sh minima; \
-	fi
-	@@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) > $(LOG_FILE) 2>&1 & \
-		PID=$$!; \
-		echo "Server PID: $$PID"
+        ./scripts/switch-theme.sh minima; \
+    fi
+	@@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) --livereload > $(LOG_FILE) 2>&1 & \
+        PID=$$!; \
+        echo "Server PID: $$PID"
 	@@until [ -f $(LOG_FILE) ]; do sleep 1; done
-	@# Wait for server to be ready and show server address
 	@for ((COUNTER = 0; ; COUNTER++)); do \
-		if grep -q "Server address:" $(LOG_FILE); then \
-			echo "Server started in $$COUNTER seconds"; \
-			grep "Server address:" $(LOG_FILE); \
-			break; \
-		fi; \
-		if [ $$COUNTER -eq 120 ]; then \
-			echo "Server timed out after $$COUNTER seconds."; \
-			echo "Review errors from $(LOG_FILE)."; \
-			cat $(LOG_FILE); \
-			exit 1; \
-		fi; \
-		sleep 1; \
-	done
+        if grep -q "Server address:" $(LOG_FILE); then \
+            echo "Server started in $$COUNTER seconds"; \
+            grep "Server address:" $(LOG_FILE); \
+            break; \
+        fi; \
+        if [ $$COUNTER -eq 120 ]; then \
+            echo "Server timed out after $$COUNTER seconds."; \
+            echo "Review errors from $(LOG_FILE)."; \
+            cat $(LOG_FILE); \
+            exit 1; \
+        fi; \
+        sleep 1; \
+    done
 
 # Serve with TeXt theme  
-serve-text: stop convert
+serve-text:
 	@echo "Starting server with TeXt theme..."
 	@if ! grep -q "kitian616/jekyll-TeXt-theme" _config.yml; then \
-		./scripts/switch-theme.sh text; \
-	fi
-	@@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) > $(LOG_FILE) 2>&1 & \
-		PID=$$!; \
-		echo "Server PID: $$PID"
+        ./scripts/switch-theme.sh text; \
+    fi
+	@@nohup bundle exec jekyll serve -H 127.0.0.1 -P $(PORT) --livereload > $(LOG_FILE) 2>&1 & \
+        PID=$$!; \
+        echo "Server PID: $$PID"
 	@@until [ -f $(LOG_FILE) ]; do sleep 1; done
-	@# Wait for server to be ready and show server address
 	@for ((COUNTER = 0; ; COUNTER++)); do \
-		if grep -q "Server address:" $(LOG_FILE); then \
-			echo "Server started in $$COUNTER seconds"; \
-			grep "Server address:" $(LOG_FILE); \
-			break; \
-		fi; \
-		if [ $$COUNTER -eq 120 ]; then \
-			echo "Server timed out after $$COUNTER seconds."; \
-			echo "Review errors from $(LOG_FILE)."; \
-			cat $(LOG_FILE); \
-			exit 1; \
-		fi; \
-		sleep 1; \
-	done
+        if grep -q "Server address:" $(LOG_FILE); then \
+            echo "Server started in $$COUNTER seconds"; \
+            grep "Server address:" $(LOG_FILE); \
+            break; \
+        fi; \
+        if [ $$COUNTER -eq 120 ]; then \
+            echo "Server timed out after $$COUNTER seconds."; \
+            echo "Review errors from $(LOG_FILE)."; \
+            cat $(LOG_FILE); \
+            exit 1; \
+        fi; \
+        sleep 1; \
+    done
 
 # Build with Minima theme
 build-minima:
@@ -196,13 +194,15 @@ detect-theme:
 	fi
 
 # Theme-aware serve target
-serve: stop convert
+serve:
 	@CURRENT_THEME=$$(make -s detect-theme); \
 	echo "Detected theme: $$CURRENT_THEME"; \
-	echo "Will call: serve-$$CURRENT_THEME"; \
-	make serve-$$CURRENT_THEME
+    echo "Will call: serve-$$CURRENT_THEME"; \
+    make serve-$$CURRENT_THEME
 
 # Theme-aware build target
 build: 
 	@CURRENT_THEME=$$(make -s detect-theme); \
 	make build-$$CURRENT_THEME
+
+
