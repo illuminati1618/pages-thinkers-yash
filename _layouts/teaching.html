@@ -1,0 +1,565 @@
+---
+layout: opencs
+---
+
+<style>
+    /* Universal Teaching Layout Styles */
+    .teaching-lesson-container * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .teaching-lesson-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333 !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px 0;
+    }
+
+    /* Force consistent text colors */
+    .teaching-lesson-container p,
+    .teaching-lesson-container li,
+    .teaching-lesson-container span {
+        color: #333 !important;
+    }
+
+    .teaching-lesson-container strong {
+        color: #333 !important;
+        background: none !important;
+    }
+
+    .teaching-lesson-container code {
+        background: #f7fafc !important;
+        color: #333 !important;
+        padding: 2px 4px !important;
+        border-radius: 3px !important;
+        font-family: 'Courier New', monospace;
+    }
+
+    .teaching-lesson-container h1, 
+    .teaching-lesson-container h2, 
+    .teaching-lesson-container h3, 
+    .teaching-lesson-container h4 {
+        color: #333 !important;
+    }
+
+    /* Container and layout */
+    .teaching-lesson-container .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Header styles */
+    .teaching-lesson-container .lesson-header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .teaching-lesson-container .lesson-header h1 {
+        color: #4a5568 !important;
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .teaching-lesson-container .lesson-header .subtitle {
+        color: #718096 !important;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .teaching-lesson-container .lesson-header .author {
+        color: #a0aec0 !important;
+        font-size: 1em;
+        font-style: italic;
+    }
+
+    /* Section styles */
+    .teaching-lesson-container .section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .teaching-lesson-container .section h2 {
+        color: #2d3748 !important;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+    }
+
+    .teaching-lesson-container .section h3 {
+        color: #4a5568 !important;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+
+    /* Section icons */
+    .teaching-lesson-container .section-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white !important;
+        font-weight: bold;
+        font-size: 1.1em;
+        flex-shrink: 0;
+    }
+
+    /* Step-based content (for guides) */
+    .teaching-lesson-container .step {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .teaching-lesson-container .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-right: 15px;
+        color: white !important;
+        flex-shrink: 0;
+    }
+
+    .teaching-lesson-container .step-title {
+        display: flex;
+        align-items: center;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: white !important;
+    }
+
+    .teaching-lesson-container .step-content {
+        margin-left: 55px;
+        line-height: 1.6;
+    }
+
+    .teaching-lesson-container .step-content p,
+    .teaching-lesson-container .step-content li {
+        color: white !important;
+        margin-bottom: 10px;
+    }
+
+    /* Code display areas */
+    .teaching-lesson-container .code-block,
+    .teaching-lesson-container .code-preview,
+    .teaching-lesson-container .code-snippet {
+        background: #1a202c;
+        color: #e2e8f0 !important;
+        font-family: 'Courier New', monospace;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 15px 0;
+        overflow-x: auto;
+        font-size: 0.9em;
+        line-height: 1.4;
+        border-left: 4px solid #4ecdc4;
+    }
+
+    .teaching-lesson-container .frontmatter {
+        background: #2d3748;
+        color: #e2e8f0 !important;
+        font-family: 'Courier New', monospace;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 15px 0;
+        white-space: pre-wrap;
+    }
+
+    .teaching-lesson-container .file-path {
+        background: rgba(0, 0, 0, 0.2);
+        color: #4ecdc4 !important;
+        font-family: 'Courier New', monospace;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    /* Special content boxes */
+    .teaching-lesson-container .info-box {
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+        border-left: 4px solid;
+    }
+
+    .teaching-lesson-container .challenge-box {
+        background: #e6fffa;
+        border-left-color: #38b2ac;
+    }
+
+    .teaching-lesson-container .challenge-box h3,
+    .teaching-lesson-container .challenge-box h4 {
+        color: #2c7a7b !important;
+        margin-bottom: 15px;
+    }
+
+    .teaching-lesson-container .think-box {
+        background: #fef5e7;
+        border-left-color: #ed8936;
+    }
+
+    .teaching-lesson-container .think-box h3,
+    .teaching-lesson-container .think-box h4 {
+        color: #c05621 !important;
+        margin-bottom: 15px;
+    }
+
+    .teaching-lesson-container .checkpoint-box,
+    .teaching-lesson-container .key-points {
+        background: #ebf8ff;
+        border-left-color: #3182ce;
+    }
+
+    .teaching-lesson-container .checkpoint-box h3,
+    .teaching-lesson-container .checkpoint-box h4,
+    .teaching-lesson-container .key-points h3,
+    .teaching-lesson-container .key-points h4 {
+        color: #2b6cb0 !important;
+        margin-bottom: 15px;
+    }
+
+    .teaching-lesson-container .warning-box {
+        background: #fed7d7;
+        border-left-color: #e53e3e;
+    }
+
+    .teaching-lesson-container .warning-box h3,
+    .teaching-lesson-container .warning-box h4 {
+        color: #c53030 !important;
+        margin-bottom: 10px;
+    }
+
+    .teaching-lesson-container .warning-box p {
+        color: #742a2a !important;
+    }
+
+    .teaching-lesson-container .success {
+        background: rgba(40, 167, 69, 0.2);
+        border-left-color: #28a745;
+    }
+
+    .teaching-lesson-container .success h3,
+    .teaching-lesson-container .success h4 {
+        color: #28a745 !important;
+        margin-bottom: 15px;
+    }
+
+    /* Lists */
+    .teaching-lesson-container .key-points ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .teaching-lesson-container .key-points li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+        color: #333 !important;
+    }
+
+    .teaching-lesson-container .key-points li::before {
+        content: "✓";
+        color: #38a169;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+
+    /* Process flow */
+    .teaching-lesson-container .process-flow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 30px 0;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .teaching-lesson-container .flow-item {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white !important;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        flex: 1;
+        min-width: 200px;
+        position: relative;
+    }
+
+    .teaching-lesson-container .flow-item h4 {
+        color: white !important;
+        margin-bottom: 10px;
+    }
+
+    .teaching-lesson-container .flow-item p {
+        color: white !important;
+    }
+
+    .teaching-lesson-container .flow-arrow {
+        font-size: 2em;
+        color: #4a5568;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Workflow steps */
+    .teaching-lesson-container .workflow-steps {
+        background: #f7fafc;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+
+    .teaching-lesson-container .workflow-steps h3 {
+        color: #2d3748 !important;
+        margin-bottom: 15px;
+    }
+
+    .teaching-lesson-container .workflow-steps ol {
+        padding-left: 20px;
+        color: #4a5568 !important;
+    }
+
+    .teaching-lesson-container .workflow-steps li {
+        margin-bottom: 10px;
+        color: #4a5568 !important;
+    }
+
+    /* Notebook demo styles */
+    .teaching-lesson-container .notebook-demo {
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px 0;
+    }
+
+    .teaching-lesson-container .cell {
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .teaching-lesson-container .cell:last-child {
+        border-bottom: none;
+    }
+
+    .teaching-lesson-container .cell-header {
+        background: #f7fafc;
+        padding: 10px 15px;
+        font-size: 0.9em;
+        color: #4a5568 !important;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .teaching-lesson-container .cell-type {
+        background: #4299e1;
+        color: white !important;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        margin-right: 10px;
+    }
+
+    .teaching-lesson-container .markdown-cell .cell-type {
+        background: #38b2ac;
+    }
+
+    .teaching-lesson-container .cell-content {
+        padding: 15px;
+        background: white;
+    }
+
+    /* Interactive elements */
+    .teaching-lesson-container .interactive-area {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+        border: 2px dashed #dee2e6;
+    }
+
+    .teaching-lesson-container .try-it {
+        background: linear-gradient(135deg, #38b2ac, #319795);
+        color: white !important;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .teaching-lesson-container .try-it:hover {
+        background: linear-gradient(135deg, #319795, #2c7a7b);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .teaching-lesson-container .container {
+            padding: 15px;
+        }
+        
+        .teaching-lesson-container .lesson-header h1 {
+            font-size: 2em;
+        }
+        
+        .teaching-lesson-container .section {
+            padding: 20px;
+        }
+        
+        .teaching-lesson-container .step-content {
+            margin-left: 0;
+            margin-top: 15px;
+        }
+        
+        .teaching-lesson-container .process-flow {
+            flex-direction: column;
+        }
+        
+        .teaching-lesson-container .flow-arrow {
+            transform: rotate(90deg);
+        }
+    }
+
+    /* Dark mode support for code areas */
+    .teaching-lesson-container .dark-code {
+        background: #0d1117;
+        color: #c9d1d9 !important;
+        border-left-color: #58a6ff;
+    }
+
+    /* Utility classes */
+    .teaching-lesson-container .center-text {
+        text-align: center;
+    }
+
+    .teaching-lesson-container .bold {
+        font-weight: 600;
+    }
+
+    .teaching-lesson-container .italic {
+        font-style: italic;
+    }
+
+    .teaching-lesson-container .highlight {
+        background: linear-gradient(120deg, rgba(255, 255, 0, 0.3) 0%, rgba(255, 255, 0, 0.3) 100%);
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+</style>
+
+<!-- Main Teaching Layout Container -->
+<div class="teaching-lesson-container" id="lesson-content">
+    <div class="container">
+        <!-- Lesson Header -->
+        <div class="lesson-header">
+            <h1>{{ page.title | default: "Lesson Title" }}</h1>
+            {% if page.description %}
+            <p class="subtitle">{{ page.description }}</p>
+            {% endif %}
+            {% if page.author %}
+            <p class="author">{{ page.author }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="lesson-content">
+            {{ content }}
+        </div>
+    </div>
+</div>
+
+<!-- Include sidebar if available -->
+{% if page.include_sidebar %}
+    {% include slim_sidebar.html %}
+{% endif %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling for anchor links
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add copy functionality to code blocks
+    const codeBlocks = document.querySelectorAll('.code-block, .code-preview, .code-snippet');
+    codeBlocks.forEach(block => {
+        const copyButton = document.createElement('button');
+        copyButton.textContent = '📋';
+        copyButton.style.cssText = `
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            border-radius: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 14px;
+        `;
+        
+        block.style.position = 'relative';
+        block.appendChild(copyButton);
+        
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(block.textContent.replace('📋', '').trim());
+            copyButton.textContent = '✅';
+            setTimeout(() => copyButton.textContent = '📋', 2000);
+        });
+    });
+
+    // Add syntax highlighting class to code elements
+    const codeElements = document.querySelectorAll('code');
+    codeElements.forEach(code => {
+        if (!code.className) {
+            code.className = 'language-text';
+        }
+    });
+});
+</script>
