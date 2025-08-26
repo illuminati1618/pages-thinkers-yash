@@ -33,7 +33,7 @@ layout: opencs
     }
 
     .teaching-lesson-container code {
-        background: #f7fafc !important;
+        /* background: #f7fafc !important; */
         color: #333 !important;
         padding: 2px 4px !important;
         border-radius: 3px !important;
@@ -172,19 +172,52 @@ layout: opencs
     }
 
     /* Code display areas */
+
     .teaching-lesson-container .code-block,
     .teaching-lesson-container .code-preview,
-    .teaching-lesson-container .code-snippet {
-        background: #1a202c;
+    .teaching-lesson-container .code-snippet,
+    .teaching-lesson-container pre.language-text {
+        background: #23272e;
         color: #e2e8f0 !important;
-        font-family: 'Courier New', monospace;
-        padding: 20px;
+        font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+        padding: 18px 20px;
         border-radius: 8px;
-        margin: 15px 0;
+        margin: 18px 0;
         overflow-x: auto;
-        font-size: 0.9em;
-        line-height: 1.4;
-        border-left: 4px solid #4ecdc4;
+        font-size: 1em;
+        line-height: 1.5;
+        border-left: 5px solid #4ecdc4;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        position: relative;
+        white-space: pre;
+    }
+
+    /* Make sure code inside code blocks is styled correctly */
+    .teaching-lesson-container .code-block code,
+    .teaching-lesson-container .code-preview code,
+    .teaching-lesson-container .code-snippet code,
+    .teaching-lesson-container pre.language-text code {
+        color: #e2e8f0 !important;
+        background: none !important;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0;
+    }
+
+    /* Style for code cells rendered as <pre class="language-text"> */
+    .teaching-lesson-container code.language-text {
+        margin: 18px 0;
+        border-radius: 8px;
+        border-left: 5px solid #4ecdc4;
+        background: #23272e;
+        /* color: #e2e8f0 !important; */
+        font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
+        padding: 18px 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        overflow-x: auto;
+        font-size: 1em;
+        line-height: 1.5;
+        white-space: pre;
     }
 
     .teaching-lesson-container .frontmatter {
@@ -478,9 +511,14 @@ layout: opencs
     }
 
     .teaching-lesson-container .highlight {
-        background: linear-gradient(120deg, rgba(255, 255, 0, 0.3) 0%, rgba(255, 255, 0, 0.3) 100%);
         padding: 2px 4px;
         border-radius: 3px;
+    }
+    .teaching-lesson-container .code-block code,
+    .teaching-lesson-container .code-preview code,
+    .teaching-lesson-container .code-snippet code {
+        color: #e2e8f0 !important;
+        background: none !important;
     }
 </style>
 
