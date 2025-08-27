@@ -190,7 +190,7 @@ permalink: /gamify/rock_paper_scissors_shoot
 
     console.log(`%cYou chose: ${playerChoice.toUpperCase()}`, 'color: #3b82f6; font-weight: bold;');
     console.log(`%cComputer chose: ${computerChoice.toUpperCase()}`, 'color: #ef4444; font-weight: bold;');
-    console.log(`%c${resultText}`, 'color: #10b981; font-size: 16px; font-weight: bold;');
+    console.log(`%c${resultText}`, 'color: #0a422fff; font-size: 16px; font-weight: bold;');
     console.log('---');
 
     return { player: playerChoice, computer: computerChoice, result: resultText };
@@ -246,7 +246,7 @@ document.getElementById("stopBtn").addEventListener("click", () => {
 });
 </script>
 
-<div id="oopExplanation" style="max-width:700px; margin:30px auto; padding:20px; background:#f0f8ff; border-radius:10px; border:1px solid #ccc;">
+<div id="oopExplanation" style="max-width:700px; margin:30px auto; padding:20px; background:#00008B; border-radius:10px; border:1px solid #ccc;">
   <h2>How the OOP Code Works</h2>
   <p>
     The JavaScript code is written using <b>Object-Oriented Programming (OOP)</b>. Instead of writing separate 
