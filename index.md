@@ -257,6 +257,59 @@ Nithika Vivek | B | [Repo](https://github.com/nithikavivek/pages-thinkers-nithik
 Saanvi Dogra | B | [Repo](https://github.com/saanvid270/pages-thinkers-saanvi/)
 Eshika Pallapotu | B | [Repo](https://github.com/eshikap1/pages-thinkers-eshika/)
 
+<style>
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            10%, 30%, 60%, 90% {
+                transform: translateY(-30px);
+            }
+            40%, 70% {
+                transform: translateY(-15px);
+            }
+        }
+        @keyframes bounce2 {
+            /* bounce */
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            10%, 30%, 60%, 90% {
+                transform: translateY(-30px);
+            }
+            40%, 70% {
+                transform: translateY(-15px);
+            }
+            /* flips */
+            0%, 25% {
+                transform: rotateZ(0deg);
+            }
+            25%, 50% {
+                transform: rotateY(180deg);
+            }
+            50%, 75% {
+                transform: rotateZ(180deg);
+            }
+            75%, 100% {
+                transform: rotateY(0deg);
+            }
+        }
+        h2{
+            color: #ffd9d9;
+        }
+    </style>
+
+<br>
+<br>
+
+<img style="animation: bounce2 3s ease infinite; max-width: 25%; filter: saturate(200%);" src="{{site.baseurl}}/images/p1group1images/img5.png">
+
+<p style="animation: bounce 3s ease infinite; background: linear-gradient(to right, #C9B1FF, #FFCAF2, #FFB2B1, #FFF3AD, #BCFFBC, #A2EDFF); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">
+  ________________________________________________________________________
+</p>
+
+
+
 ## About
 
 Empower yourself to solve real-world problems, unlock creativity, and open doors to every field—because coding is the language of innovation.
