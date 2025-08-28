@@ -3,59 +3,23 @@ layout: opencs
 ---
 
 <style>
-    /* Universal Teaching Layout Styles */
-    .teaching-lesson-container * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        color: #333 !important; /* Ensure dark text globally */
-    }
-
-    .teaching-lesson-container {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        color: #333 !important;
+    /* Teaching Layout - Styles ONLY markdown content, not Python cells */
+    
+    /* Container wrapper for teaching content */
+    .teaching-wrapper {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         padding: 20px 0;
     }
 
-    /* Force consistent text colors */
-    .teaching-lesson-container p,
-    .teaching-lesson-container li,
-    .teaching-lesson-container span {
-        color: #333 !important;
-    }
-
-    .teaching-lesson-container strong {
-        color: #333 !important;
-        background: none !important;
-    }
-
-    .teaching-lesson-container code {
-        /* background: #f7fafc !important; */
-        color: #333 !important;
-        padding: 2px 4px !important;
-        border-radius: 3px !important;
-        font-family: 'Courier New', monospace;
-    }
-
-    .teaching-lesson-container h1, 
-    .teaching-lesson-container h2, 
-    .teaching-lesson-container h3, 
-    .teaching-lesson-container h4 {
-        color: #333 !important;
-    }
-
-    /* Container and layout */
-    .teaching-lesson-container .container {
+    .teaching-container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
     }
 
-    /* Header styles */
-    .teaching-lesson-container .lesson-header {
+    /* Lesson header - only in markdown */
+    .lesson-header {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
         padding: 30px;
@@ -65,27 +29,27 @@ layout: opencs
         backdrop-filter: blur(10px);
     }
 
-    .teaching-lesson-container .lesson-header h1 {
+    .lesson-header h1 {
         color: #4a5568 !important;
         font-size: 2.5em;
         margin-bottom: 15px;
         font-weight: 700;
     }
 
-    .teaching-lesson-container .lesson-header .subtitle {
+    .lesson-header .subtitle {
         color: #718096 !important;
         font-size: 1.2em;
         margin-bottom: 10px;
     }
-
-    .teaching-lesson-container .lesson-header .author {
+    
+    .lesson-header .author {
         color: #a0aec0 !important;
-        font-size: 1em;
         font-style: italic;
     }
 
-    /* Section styles */
-    .teaching-lesson-container .section {
+    /* Style ONLY markdown-rendered sections */
+    .markdown-section,
+    .section {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
         padding: 30px;
@@ -93,8 +57,24 @@ layout: opencs
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(10px);
     }
+    
+    /* Force dark text in sections */
+    .section p,
+    .section li,
+    .section h1,
+    .section h2, 
+    .section h3,
+    .section h4,
+    .section strong,
+    .section em,
+    .section span:not(.cell-type):not(.section-icon) {
+        color: #333 !important;
+        background: transparent !important;
+    }
 
-    .teaching-lesson-container .section h2 {
+    /* Style markdown headers with section icons */
+    .markdown-section h2,
+    .section h2 {
         color: #2d3748 !important;
         font-size: 1.8em;
         margin-bottom: 20px;
@@ -103,15 +83,7 @@ layout: opencs
         font-weight: 600;
     }
 
-    .teaching-lesson-container .section h3 {
-        color: #4a5568 !important;
-        font-size: 1.4em;
-        margin-bottom: 15px;
-        font-weight: 500;
-    }
-
-    /* Section icons */
-    .teaching-lesson-container .section-icon {
+    .section-icon {
         width: 35px;
         height: 35px;
         margin-right: 15px;
@@ -126,213 +98,118 @@ layout: opencs
         flex-shrink: 0;
     }
 
-    /* Step-based content (for guides) */
-    .teaching-lesson-container .step {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        padding: 25px;
-        margin-bottom: 20px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .teaching-lesson-container .step-number {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        font-size: 1.2em;
-        font-weight: bold;
-        margin-right: 15px;
-        color: white !important;
-        flex-shrink: 0;
-    }
-
-    .teaching-lesson-container .step-title {
-        display: flex;
-        align-items: center;
-        font-size: 1.3em;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: white !important;
-    }
-
-    .teaching-lesson-container .step-content {
-        margin-left: 55px;
-        line-height: 1.6;
-    }
-
-    .teaching-lesson-container .step-content p,
-    .teaching-lesson-container .step-content li {
-        color: white !important;
-        margin-bottom: 10px;
-    }
-
-    /* Code display areas */
-
-    .teaching-lesson-container .code-block,
-    .teaching-lesson-container .code-preview,
-    .teaching-lesson-container .code-snippet,
-    .teaching-lesson-container pre.language-text {
-        background: #23272e;
-        color: #e2e8f0 !important;
-        font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
-        padding: 18px 20px;
-        border-radius: 8px;
-        margin: 18px 0;
-        overflow-x: auto;
-        font-size: 1em;
-        line-height: 1.5;
-        border-left: 5px solid #4ecdc4;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        position: relative;
-        white-space: pre;
-    }
-
-    /* Make sure code inside code blocks is styled correctly */
-    .teaching-lesson-container .code-block code,
-    .teaching-lesson-container .code-preview code,
-    .teaching-lesson-container .code-snippet code,
-    .teaching-lesson-container pre.language-text code {
-        color: #e2e8f0 !important;
-        background: none !important;
-        font-family: inherit;
-        font-size: inherit;
-        padding: 0;
-    }
-
-    /* Style for code cells rendered as <pre class="language-text"> */
-    .teaching-lesson-container code.language-text {
-        margin: 18px 0;
-        border-radius: 8px;
-        border-left: 5px solid #4ecdc4;
-        background: #23272e;
-        /* color: #e2e8f0 !important; */
-        font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Courier New', monospace;
-        padding: 18px 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        overflow-x: auto;
-        font-size: 1em;
-        line-height: 1.5;
-        white-space: pre;
-    }
-
-    .teaching-lesson-container .frontmatter {
-        background: #2d3748;
+    /* Style ONLY code blocks within markdown cells */
+    .section .code-block,
+    .section .code-preview,
+    .section .code-snippet,
+    .markdown-section .code-block,
+    .markdown-section .code-preview,
+    .markdown-section .code-snippet,
+    .teaching-code-display {
+        background: #1a202c !important;
         color: #e2e8f0 !important;
         font-family: 'Courier New', monospace;
         padding: 20px;
         border-radius: 8px;
         margin: 15px 0;
-        white-space: pre-wrap;
+        overflow-x: auto;
+        font-size: 0.9em;
+        line-height: 1.4;
+        border-left: 4px solid #4ecdc4;
+    }
+    
+    /* Ensure text in code blocks stays light */
+    .code-block,
+    .code-preview,
+    .code-snippet {
+        color: #e2e8f0 !important;
     }
 
-    .teaching-lesson-container .file-path {
-        background: rgba(0, 0, 0, 0.2);
-        color: #4ecdc4 !important;
+    /* Special markdown cell styling for inline code */
+    .markdown-section code,
+    .section code {
+        background: #f7fafc !important;
+        color: #333 !important;
+        padding: 2px 4px;
+        border-radius: 3px;
         font-family: 'Courier New', monospace;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-weight: bold;
-        display: inline-block;
     }
 
-    /* Special content boxes */
-    .teaching-lesson-container .info-box {
+    /* Info boxes - only in markdown */
+    .info-box {
         padding: 20px;
         margin: 20px 0;
         border-radius: 0 8px 8px 0;
         border-left: 4px solid;
     }
 
-    .teaching-lesson-container .challenge-box {
+    .challenge-box {
         background: #e6fffa;
         border-left-color: #38b2ac;
     }
 
-    .teaching-lesson-container .challenge-box h3,
-    .teaching-lesson-container .challenge-box h4 {
+    .challenge-box h3,
+    .challenge-box h4 {
         color: #2c7a7b !important;
         margin-bottom: 15px;
     }
+    
+    .challenge-box p,
+    .challenge-box li {
+        color: #333 !important;
+    }
 
-    .teaching-lesson-container .think-box {
+    .think-box {
         background: #fef5e7;
         border-left-color: #ed8936;
     }
 
-    .teaching-lesson-container .think-box h3,
-    .teaching-lesson-container .think-box h4 {
+    .think-box h3,
+    .think-box h4 {
         color: #c05621 !important;
         margin-bottom: 15px;
     }
+    
+    .think-box p,
+    .think-box li {
+        color: #333 !important;
+    }
 
-    .teaching-lesson-container .checkpoint-box,
-    .teaching-lesson-container .key-points {
+    .checkpoint-box,
+    .key-points {
         background: #ebf8ff;
         border-left-color: #3182ce;
     }
 
-    .teaching-lesson-container .checkpoint-box h3,
-    .teaching-lesson-container .checkpoint-box h4,
-    .teaching-lesson-container .key-points h3,
-    .teaching-lesson-container .key-points h4 {
+    .checkpoint-box h3,
+    .key-points h3 {
         color: #2b6cb0 !important;
         margin-bottom: 15px;
     }
+    
+    .checkpoint-box p,
+    .checkpoint-box li,
+    .key-points p,
+    .key-points li {
+        color: #333 !important;
+    }
 
-    .teaching-lesson-container .warning-box {
+    .warning-box {
         background: #fed7d7;
         border-left-color: #e53e3e;
     }
 
-    .teaching-lesson-container .warning-box h3,
-    .teaching-lesson-container .warning-box h4 {
+    .warning-box h4 {
         color: #c53030 !important;
         margin-bottom: 10px;
     }
 
-    .teaching-lesson-container .warning-box p {
+    .warning-box p {
         color: #742a2a !important;
     }
 
-    .teaching-lesson-container .success {
-        background: rgba(40, 167, 69, 0.2);
-        border-left-color: #28a745;
-    }
-
-    .teaching-lesson-container .success h3,
-    .teaching-lesson-container .success h4 {
-        color: #28a745 !important;
-        margin-bottom: 15px;
-    }
-
-    /* Lists */
-    .teaching-lesson-container .key-points ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    .teaching-lesson-container .key-points li {
-        margin-bottom: 10px;
-        padding-left: 25px;
-        position: relative;
-        color: #333 !important;
-    }
-
-    .teaching-lesson-container .key-points li::before {
-        content: "✓";
-        color: #38a169;
-        font-weight: bold;
-        position: absolute;
-        left: 0;
-    }
-
-    /* Process flow */
-    .teaching-lesson-container .process-flow {
+    /* Process flow visualization */
+    .process-flow {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -341,7 +218,7 @@ layout: opencs
         gap: 20px;
     }
 
-    .teaching-lesson-container .flow-item {
+    .flow-item {
         background: linear-gradient(135deg, #667eea, #764ba2);
         color: white !important;
         padding: 20px;
@@ -349,65 +226,37 @@ layout: opencs
         text-align: center;
         flex: 1;
         min-width: 200px;
-        position: relative;
     }
 
-    .teaching-lesson-container .flow-item h4 {
-        color: white !important;
-        margin-bottom: 10px;
-    }
-
-    .teaching-lesson-container .flow-item p {
+    .flow-item h4,
+    .flow-item p {
         color: white !important;
     }
 
-    .teaching-lesson-container .flow-arrow {
+    .flow-arrow {
         font-size: 2em;
-        color: #4a5568;
-        display: flex;
-        align-items: center;
-    }
-
-    /* Workflow steps */
-    .teaching-lesson-container .workflow-steps {
-        background: #f7fafc;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 20px 0;
-    }
-
-    .teaching-lesson-container .workflow-steps h3 {
-        color: #2d3748 !important;
-        margin-bottom: 15px;
-    }
-
-    .teaching-lesson-container .workflow-steps ol {
-        padding-left: 20px;
         color: #4a5568 !important;
     }
 
-    .teaching-lesson-container .workflow-steps li {
-        margin-bottom: 10px;
-        color: #4a5568 !important;
-    }
-
-    /* Notebook demo styles */
-    .teaching-lesson-container .notebook-demo {
+    /* Notebook demo visualization */
+    .notebook-demo {
         border: 2px solid #e2e8f0;
         border-radius: 10px;
         overflow: hidden;
         margin: 20px 0;
     }
 
-    .teaching-lesson-container .cell {
+    .cell-demo,
+    .cell {
         border-bottom: 1px solid #e2e8f0;
     }
 
-    .teaching-lesson-container .cell:last-child {
+    .cell-demo:last-child,
+    .cell:last-child {
         border-bottom: none;
     }
 
-    .teaching-lesson-container .cell-header {
+    .cell-header {
         background: #f7fafc;
         padding: 10px 15px;
         font-size: 0.9em;
@@ -417,7 +266,7 @@ layout: opencs
         align-items: center;
     }
 
-    .teaching-lesson-container .cell-type {
+    .cell-type {
         background: #4299e1;
         color: white !important;
         padding: 2px 8px;
@@ -426,150 +275,228 @@ layout: opencs
         margin-right: 10px;
     }
 
-    .teaching-lesson-container .markdown-cell .cell-type {
+    .markdown-cell .cell-type {
         background: #38b2ac;
     }
 
-    .teaching-lesson-container .cell-content {
+    .cell-content {
         padding: 15px;
         background: white;
     }
+    
+    .cell-content p,
+    .cell-content strong {
+        color: #333 !important;
+    }
 
-    /* Interactive elements */
-    .teaching-lesson-container .interactive-area {
-        background: #f8f9fa;
+    /* Frontmatter display */
+    .frontmatter {
+        background: #2d3748;
+        color: #e2e8f0 !important;
+        font-family: 'Courier New', monospace;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 15px 0;
+        white-space: pre-wrap;
+    }
+
+    /* File path display */
+    .file-path {
+        background: rgba(0, 0, 0, 0.2);
+        color: #4ecdc4 !important;
+        font-family: 'Courier New', monospace;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        display: inline-block;
+    }
+
+    /* Workflow steps */
+    .workflow-steps {
+        background: #f7fafc;
         padding: 20px;
         border-radius: 10px;
         margin: 20px 0;
-        border: 2px dashed #dee2e6;
     }
 
-    .teaching-lesson-container .try-it {
-        background: linear-gradient(135deg, #38b2ac, #319795);
+    .workflow-steps h3 {
+        color: #2d3748 !important;
+        margin-bottom: 15px;
+    }
+
+    .workflow-steps ol,
+    .workflow-steps li {
+        color: #4a5568 !important;
+    }
+
+    .workflow-steps li {
+        margin-bottom: 10px;
+    }
+    
+    .workflow-steps li strong {
+        color: #4a5568 !important;
+    }
+
+    /* Special list styling for key points */
+    .key-points ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .key-points li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+        color: #333 !important;
+    }
+
+    .key-points li::before {
+        content: "✓";
+        color: #38a169;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+    }
+    
+    .key-points li strong {
+        color: #333 !important;
+        font-weight: 700 !important;
+    }
+
+    /* Step-based content */
+    .step {
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
         color: white !important;
-        padding: 15px 25px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1em;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        border-radius: 50%;
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-right: 15px;
     }
 
-    .teaching-lesson-container .try-it:hover {
-        background: linear-gradient(135deg, #319795, #2c7a7b);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+    .step-title {
+        display: flex;
+        align-items: center;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #2d3748 !important;
+    }
+
+    .step-content {
+        margin-left: 55px;
+        line-height: 1.6;
+    }
+
+    /* DO NOT style these Jupyter-specific elements */
+    /* These are handled by the Jupyter/SASS overrides */
+    .jp-Cell,
+    .jp-CodeCell,
+    .jp-InputArea,
+    .jp-OutputArea,
+    .jp-InputPrompt,
+    .jp-OutputPrompt,
+    .highlight,
+    .highlight pre,
+    .input_area,
+    .output_area,
+    .code_cell,
+    .CodeMirror,
+    .rendered_html pre,
+    .rendered_html code,
+    .language-python,
+    .highlighter-rouge {
+        /* Let Jupyter's styles handle these */
+    }
+
+    /* Only style code blocks that are explicitly marked as teaching examples */
+    .teaching-example-code {
+        background: #1a202c !important;
+        color: #e2e8f0 !important;
+        padding: 20px !important;
+        border-radius: 8px !important;
+        border-left: 4px solid #4ecdc4 !important;
     }
 
     /* Responsive design */
     @media (max-width: 768px) {
-        .teaching-lesson-container .container {
+        .teaching-container {
             padding: 15px;
         }
         
-        .teaching-lesson-container .lesson-header h1 {
+        .lesson-header h1 {
             font-size: 2em;
         }
         
-        .teaching-lesson-container .section {
+        .markdown-section,
+        .section {
             padding: 20px;
         }
         
-        .teaching-lesson-container .step-content {
+        .step-content {
             margin-left: 0;
             margin-top: 15px;
         }
         
-        .teaching-lesson-container .process-flow {
+        .process-flow {
             flex-direction: column;
         }
         
-        .teaching-lesson-container .flow-arrow {
+        .flow-arrow {
             transform: rotate(90deg);
         }
     }
-
-    /* Dark mode support for code areas */
-    .teaching-lesson-container .dark-code {
-        background: #0d1117;
-        color: #c9d1d9 !important;
-        border-left-color: #58a6ff;
-    }
-
-    /* Utility classes */
-    .teaching-lesson-container .center-text {
-        text-align: center;
-    }
-
-    .teaching-lesson-container .bold {
-        font-weight: 600;
-    }
-
-    .teaching-lesson-container .italic {
-        font-style: italic;
-    }
-
-    .teaching-lesson-container .highlight {
-        padding: 2px 4px;
-        border-radius: 3px;
-    }
-    .teaching-lesson-container .code-block code,
-    .teaching-lesson-container .code-preview code,
-    .teaching-lesson-container .code-snippet code {
-        color: #e2e8f0 !important;
-        background: none !important;
-    }
 </style>
 
-<!-- Main Teaching Layout Container -->
-<div class="teaching-lesson-container" id="lesson-content">
-    <div class="container">
-        <!-- Lesson Header -->
+<!-- Main wrapper with gradient background -->
+<div class="teaching-wrapper">
+    <div class="teaching-container">
+        <!-- Optional lesson header -->
+        {% if page.title or page.description %}
         <div class="lesson-header">
-            <h1>{{ page.title | default: "Lesson Title" }}</h1>
+            {% if page.title %}
+            <h1>{{ page.title }}</h1>
+            {% endif %}
             {% if page.description %}
             <p class="subtitle">{{ page.description }}</p>
             {% endif %}
             {% if page.author %}
-            <p class="author">{{ page.author }}</p>
+            <p class="author">by {{ page.author }}</p>
             {% endif %}
         </div>
+        {% endif %}
 
-        <!-- Main Content Area -->
-        <div class="lesson-content">
+        <!-- Main content -->
+        <div class="teaching-content">
             {{ content }}
         </div>
     </div>
 </div>
 
-<!-- Include sidebar if available -->
-{% if page.include_sidebar %}
-    {% include slim_sidebar.html %}
-{% endif %}
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Add smooth scrolling for anchor links
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
+    // Add copy buttons only to teaching code examples, not Python cells
+    const teachingCodeBlocks = document.querySelectorAll('.code-block, .code-preview, .code-snippet');
+    teachingCodeBlocks.forEach(block => {
+        // Skip if it's inside a Jupyter code cell
+        if (block.closest('.jp-CodeCell') || block.closest('.code_cell') || block.closest('.highlight')) {
+            return;
+        }
 
-    // Add copy functionality to code blocks
-    const codeBlocks = document.querySelectorAll('.code-block, .code-preview, .code-snippet');
-    codeBlocks.forEach(block => {
         const copyButton = document.createElement('button');
-        copyButton.textContent = '📋';
+        copyButton.textContent = '📋 Copy';
         copyButton.style.cssText = `
             position: absolute;
             top: 10px;
@@ -578,27 +505,32 @@ document.addEventListener('DOMContentLoaded', function() {
             border: none;
             color: white;
             border-radius: 4px;
-            padding: 5px 8px;
+            padding: 5px 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
+            transition: all 0.3s ease;
         `;
         
         block.style.position = 'relative';
         block.appendChild(copyButton);
         
-        copyButton.addEventListener('click', () => {
-            navigator.clipboard.writeText(block.textContent.replace('📋', '').trim());
-            copyButton.textContent = '✅';
-            setTimeout(() => copyButton.textContent = '📋', 2000);
+        copyButton.addEventListener('click', function() {
+            const codeText = block.textContent.replace('📋 Copy', '').trim();
+            navigator.clipboard.writeText(codeText);
+            copyButton.textContent = '✅ Copied!';
+            setTimeout(() => copyButton.textContent = '📋 Copy', 2000);
         });
     });
 
-    // Add syntax highlighting class to code elements
-    const codeElements = document.querySelectorAll('code');
-    codeElements.forEach(code => {
-        if (!code.className) {
-            code.className = 'language-text';
-        }
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
     });
 });
 </script>
