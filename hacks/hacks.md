@@ -88,6 +88,15 @@ lxdData:
       Lessons: "/solitaire/lesson"
       Image: "/images/solitaire.png"
       Alt: "Solitaire Image"
+    - Title: "Rock Paper Scissors"
+      Genre: "Coding"
+      Level: "Intermediate"
+      Description: "Learn more about console, elements and OOP as you play with Rock Paper Scissors."
+      Categories: ["Console", "OOP", "Game Coding", "Elements", "Innovation"]
+      Game: "/pages-thinkers-yash/rock-paper-scissor"
+      Lessons: "/pages-thinkers-yash/rock_paper_scissors/lessons"
+      Image: "/pages-thinkers-yash/images/rock-paper-scissors.jpg"
+      Alt: "Rock paper Scissors Image"
     
 ---
 
