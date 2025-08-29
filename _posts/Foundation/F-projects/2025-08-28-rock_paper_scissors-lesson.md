@@ -1,6 +1,9 @@
-
-
 ---
+layout: opencs
+title: Rock Paper Scissors Lesson
+comments: True
+permalink: /rock_paper_scissors/lessons
+authors: Nithika Vivek, Saanvi Dogra, Eshika Pallapotu
 ---
 
 <html lang="en">
