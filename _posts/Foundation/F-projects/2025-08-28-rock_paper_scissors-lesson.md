@@ -496,35 +496,15 @@ class GameButton {
     <ul>
         <li>
             <strong>Rock:</strong> Change border color<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'rock\')"]').style.border = '4px solid lime';</div>
+            <div class="code-block">rock.setBorder('4px solid lime');</div>
         </li>
         <li>
             <strong>Paper:</strong> Rotate the button<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'paper\')"]').style.transform = 'rotate(15deg)';</div>
+            <div class="code-block">paper.rotate(15);</div>
         </li>
         <li>
             <strong>Scissors:</strong> Change button size<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'scissors\')"]').style.fontSize = '2em';</div>
-        </li>
-        <li>
-            <strong>Rock:</strong> Add a glowing effect<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'rock\')"]').style.boxShadow = '0 0 20px 5px #ffd700';</div>
-        </li>
-        <li>
-            <strong>Paper:</strong> Remove all custom styles<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'paper\')"]').removeAttribute('style');</div>
-        </li>
-        <li>
-            <strong>Scissors:</strong> Change button text<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'scissors\')"]').textContent = '✂️ Scissors!';</div>
-        </li>
-        <li>
-            <strong>Rock:</strong> Make button transparent<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'rock\')"]').style.opacity = '0.5';</div>
-        </li>
-        <li>
-            <strong>Paper:</strong> Add a red border and shadow<br>
-            <div class="code-block">document.querySelector('button[onclick="playRPS(\'paper\')"]').style.boxShadow = '0 0 10px 2px red'; document.querySelector('button[onclick="playRPS(\'paper\')"]').style.border = '3px solid red';</div>
+            <div class="code-block">scissors.setWidth(150);</div>
         </li>
     </ul>
     <p>
@@ -650,11 +630,11 @@ checkpointCheck(
     "checkpoint5-input",
     "checkpoint5-feedback",
     [
-        "document.querySelector('button[onclick=\"playRPS(\\'paper\\')\"]').style.transform = 'rotate(15deg)';",
-        'document.querySelector("button[onclick=\'playRPS(\\\'paper\\\')\']").style.transform = \'rotate(15deg)\';'
+        "paper.rotate(15);",
+        'paper.rotate(15);'
     ],
     "checkpoint5-show",
-    "document.querySelector('button[onclick=\"playRPS(\\'paper\\')\"]').style.transform = 'rotate(15deg)';"
+    "paper.rotate(15);"
 );
 </script>
 </body>
