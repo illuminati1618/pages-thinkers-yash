@@ -6,11 +6,6 @@ layout: opencs
     /* Teaching Layout - Styles ONLY markdown content, not Python cells */
     
     /* Container wrapper for teaching content */
-    .teaching-wrapper {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        padding: 20px 0;
-    }
 
     .teaching-container {
         max-width: 1200px;
@@ -127,12 +122,34 @@ layout: opencs
 
     /* Special markdown cell styling for inline code */
     .markdown-section code,
-    .section code {
-        background: #f7fafc !important;
-        color: #333 !important;
-        padding: 2px 4px;
-        border-radius: 3px;
-        font-family: 'Courier New', monospace;
+    .section code,
+    .info-box code,
+    .think-box code,
+    .challenge-box code,
+    .checkpoint-box code,
+    .warning-box code,
+    .key-points code {
+        background: #f0f4f8 !important;
+        color: #2d3748 !important;
+        padding: 2px 6px !important;
+        border-radius: 3px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 0.9em !important;
+        border: 1px solid #e2e8f0 !important;
+        display: inline !important;
+    }
+    
+    /* Override for code inside pre blocks (code blocks, not inline) */
+    .section pre code,
+    .markdown-section pre code,
+    .code-block code,
+    .code-preview code,
+    .code-snippet code {
+        background: transparent !important;
+        color: #e2e8f0 !important;
+        border: none !important;
+        padding: 0 !important;
+        display: block !important;
     }
 
     /* Info boxes - only in markdown */
@@ -202,10 +219,27 @@ layout: opencs
     .warning-box h4 {
         color: #c53030 !important;
         margin-bottom: 10px;
+        font-weight: 600 !important;
     }
 
-    .warning-box p {
+    .warning-box p,
+    .warning-box li,
+    .warning-box ul {
         color: #742a2a !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Special fix for code inside warning boxes */
+    .warning-box code {
+        background: rgba(255, 255, 255, 0.5) !important;
+        color: #7f1d1d !important;
+        padding: 2px 6px !important;
+        border-radius: 3px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 0.9em !important;
+        border: 1px solid rgba(229, 62, 62, 0.3) !important;
+        display: inline !important;
+        font-weight: 600 !important;
     }
 
     /* Process flow visualization */
@@ -302,17 +336,13 @@ layout: opencs
 
     /* File path display */
     .file-path {
-        background: #f8f9fa;
-        color: #2d3748 !important;
-        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        padding: 8px 12px;
-        border-radius: 6px;
-        font-weight: 500;
+        background: rgba(0, 0, 0, 0.2);
+        color: #4ecdc4 !important;
+        font-family: 'Courier New', monospace;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
         display: inline-block;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        font-size: 14px;
-        letter-spacing: 0.025em;
     }
 
     /* Workflow steps */
