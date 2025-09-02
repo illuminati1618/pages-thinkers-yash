@@ -312,14 +312,71 @@ permalink: /rock-paper-scissor/
     console.log(`Result: ${resultText}`);
   };
 
+  class GameObject {
+    constructor(id) {
+      this.el = document.getElementById(id);
+      if (!this.el) throw new Error(`Element #${id} not found`);
+    }
+
+    rotate(deg) {
+      this.el.style.transform = `rotate(${deg}deg)`;
+      return this;
+    }
+
+    setBorder(style) {
+      this.el.style.border = style;
+      return this;
+    }
+
+    setWidth(px) {
+      this.el.style.width = `${px}px`;
+      return this;
+    }
+
+    setColor(color) {
+      this.el.style.backgroundColor = color;
+      return this;
+    }
+
+    reset() {
+      this.el.style.transform = "";
+      this.el.style.border = "";
+      this.el.style.width = "";
+      this.el.style.backgroundColor = "";
+      return this;
+    }
+  }
+
+  // --- Specialized classes (extend GameObject) ---
+  class Rock extends GameObject {
+    constructor() { super("rock-img"); }
+  }
+
+  class Paper extends GameObject {
+    constructor() { super("paper-img"); }
+  }
+
+  class Scissors extends GameObject {
+    constructor() { super("scissors-img"); }
+  }
+
+  // --- Instances (global) ---
+  const rock = new Rock();
+  const paper = new Paper();
+  const scissors = new Scissors();
+
+  window.rock = rock;
+  window.paper = paper;
+  window.scissors = scissors;
+
   // --- inspect-learning alerts (unchanged) ---
-  document.getElementById("rock-btn").addEventListener("click", ()=>{
-    alert("🪨 Right-click this image and choose 'Inspect'!\n\nTry this in the console:\n\ndocument.querySelector('#rock-img').style.border = '4px solid lime';");
+  document.getElementById("rock-btn").addEventListener("click", () => {
+    alert("🪨 Try in the console:\n\nrock.setBorder('4px solid lime');");
   });
-  document.getElementById("paper-btn").addEventListener("click", ()=>{
-    alert("📄 Right-click this image and choose 'Inspect'!\n\nTry this in the console:\n\ndocument.querySelector('#paper-img').style.transform = 'rotate(15deg)';");
+  document.getElementById("paper-btn").addEventListener("click", () => {
+    alert("📄 Try in the console:\n\npaper.rotate(15);");
   });
-  document.getElementById("scissors-btn").addEventListener("click", ()=>{
-    alert("✂️ Right-click this image and choose 'Inspect'!\n\nTry this in the console:\n\ndocument.querySelector('#scissors-img').style.width = '150px';");
+  document.getElementById("scissors-btn").addEventListener("click", () => {
+    alert("✂️ Try in the console:\n\nscissors.setWidth(150);");
   });
 </script>
